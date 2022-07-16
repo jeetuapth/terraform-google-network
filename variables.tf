@@ -35,7 +35,7 @@ variable "private_subnet_cidr" {
   description = "Create private subnets cidr with these names"
   type        = list(string)
   default     = null
-  
+}  
 # define application name
 variable "app_name" {
   type = string
