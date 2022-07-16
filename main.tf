@@ -22,9 +22,8 @@ resource "google_compute_subnetwork" "private_subnet_1" {
 resource "google_compute_subnetwork" "private_subnet" {
   #provider = google
   purpose = "PRIVATE"
-  count = length(var.private-subnet)
+  count = ["length(var.private-subnet)", "length(var.private_subnet_cidr)"]
   name  = var.private-subnet[count.index]
-  count = length(var.private_subnet_cidr)
   ip_cidr_range  = var.private_subnet_cidr[count.index]
   network = google_compute_network.vpc.name
   region = var.region
