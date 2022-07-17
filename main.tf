@@ -8,7 +8,7 @@ resource "google_compute_network" "vpc" {
   routing_mode = "GLOBAL"
 }
 /*
-# Module to create private subnet under Global VPC
+  # Module to create private subnet under Global VPC
 resource "google_compute_subnetwork" "private_subnet_1" {
   #provider = google
   purpose = "PRIVATE"
@@ -18,7 +18,7 @@ resource "google_compute_subnetwork" "private_subnet_1" {
   region = var.region
 }
 */
-  
+ /* This block will ve used for Count loop in List of any  
 resource "google_compute_subnetwork" "private_subnet" {
   #provider = google
   purpose = "PRIVATE"
@@ -28,7 +28,17 @@ resource "google_compute_subnetwork" "private_subnet" {
   network = google_compute_network.vpc.name
   region = var.region
 }
-
+*/
+ #This block will ve used for for loop in map 
+resource "google_compute_subnetwork" "private_subnet" {
+  #provider = google
+  purpose = "PRIVATE"
+  for_each = var.private-subnet
+  name  = each.key
+  ip_cidr_range  = each.value.cidr
+  network = google_compute_network.vpc.name
+  region = var.region
+}
 # Module to create a public ip for nat service
 
 resource "google_compute_address" "nat-ip" {
