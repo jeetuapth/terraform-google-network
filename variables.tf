@@ -25,13 +25,18 @@ variable "private_subnet_cidr_1" {
   default     = null
 }
 */
-  
+ /*  This is in case of Count loop for List of Any  
 variable "private-subnet" {
   description = "Create private subnets with these names"
   type        = list(any)
   default     = null
 }
-
+*/
+variable "private-subnet" {
+  description = "Create private subnets with these names"
+  type        = map(any)
+  default     = null
+}
 # define application name
 variable "app_name" {
   type = string
